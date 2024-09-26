@@ -1,13 +1,9 @@
 """
-
 @authors:
-
 # =============================================================================
  Information:
-
     The functions in this script are used to convert variables in their nature,
     or in their shapes.
-
 # =============================================================================
 """
 # =============================================================================
@@ -110,6 +106,15 @@ def Make_Line (arr):
     """
     return np.reshape(arr, (1, arr.size))
 
+def Make_Line_acc(acc):
+    L = len(acc[:,0])
+    line = np.zeros(3*L)
+    j = 0
+    for i in acc:
+        line[3*j: 3*(j+1)] = i
+        j +=1
+    return line
+
 
 def Make_Array (line, col = 3):
     """ Returns the line list in an array of col columns
@@ -122,7 +127,6 @@ def Make_Array (line, col = 3):
 def Make_Array_Coef (lmax, CS):
     """
     Returns the arrays of the solved Cosine and Sine coefficients
-
     Input:
         CS: line array filled in coefficients in such manner :
         CS = [c00,c10,c11,c20,c21,c22, ... s11,s21,s22,s31,s32,s33 ... ]
@@ -132,7 +136,6 @@ def Make_Array_Coef (lmax, CS):
         HC_coef: solved spherical harmonic cosine coefficients
         HS_coef: solved spherical harmonic sine coefficients
             To fetch use: HS_coef(l,m) = {SIN_lm_coef}
-
     """
 #    Cos_len = int( (lmax+1)*(lmax+2) /2 ) # c00,c10,c11,c20,c21,c22, ...
 #    Sin_len = int( (lmax  )*(lmax+1) /2 ) # s11,s21,s22,s31,s32,s33, ...
@@ -157,13 +160,11 @@ def Make_Array_Coef (lmax, CS):
 def Make_Line_Coef (lmax, HC, HS):
     """
     Returns the line array filled of Cosine and Sine coefficients
-
     Input:
         HC: spherical harmonic cosine coefficients
         HS: spherical harmonic sine coefficients
     Output:
         CS: line array filled in coefficients
-
     """
     Cos_len = int( (lmax+1)*(lmax+2) /2 ) -3 # c20,c21,c22, ...
     Sin_len = int( (lmax  )*(lmax+1) /2 ) -1 # s21,s22,s31,s32,s33, ...
@@ -231,4 +232,3 @@ if __name__ == '__main__':
     CS = TEST_Line_Array()
 
     print("\nGH_convert done")
-

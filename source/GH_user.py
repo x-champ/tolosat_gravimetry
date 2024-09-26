@@ -1,18 +1,13 @@
 """
-
 @authors:
-
 # =============================================================================
  Information:
-
     The purpose of this script is to serve as the main code for the user.
     Use the user's guide that still has not been written to find out how to use
     this tool.
     Use your python skills to understand how this tool has been coded.
-
     Change your variables, do your maths, and do your science.
     Let's go to space, y'all
-
     Process :
     1.  Generate the acceleration values (from orbit data or raw simulation)
             using GH_generate
@@ -24,9 +19,7 @@
             using GH_displayCoef
     5.  Plot Satellite positions and accelerations in space
             using GH_displaySat
-
 todo: replace "acc" by "geopot" lol
-
 future stuff:
     earth rotation
     approx drag and shit (solar radiation, tidal effects)
@@ -67,10 +60,10 @@ if __name__ == '__main__':
 
     """ The original satellite path """
     # file_name = "ISS_Earthfixed_1jour_1sec.e"
-    # file_name = "ISS_Earthfixed_1jour_60sec.e"
+    file_name = "ISS_Earthfixed_1jour_60sec.e"
     # file_name = "Polar_400km_EarthFixed_1jour_1sec.e"
     # file_name = "Polar_400km_EarthFixed_15jours_5sec.e"
-    file_name = "Polar_400km_EarthFixed_7jours_5sec.e"
+    #file_name = "Polar_400km_EarthFixed_7jours_5sec.e"
     days = 0.1
 
     """ data solving """
@@ -92,8 +85,9 @@ if __name__ == '__main__':
 #%%
     time_str = imp.Get_Time()
 
-    HC, HS = imp.Fetch_Coef()
-    HC_topo, HS_topo = imp.Fetch_Topo_Coef()
+
+    #HC, HS = imp.Fetch_Coef()
+    #HC_topo, HS_topo = imp.Fetch_Topo_Coef()
 
     Pos_sim, Time = imp.Fetch_Pos(file_name, days)
     # Acc_sim = gen.Gen_Sim_Acc(lmax_gen, HC, HS, Pos_sim)
@@ -144,18 +138,14 @@ print("\nUser instructions done")
 # =============================================================================
 # =============================================================================
 # # #
-
 Here's whats going wrong:
     The acceleration generation function returns weird values.
     Just look at "Acc_sim" to see that the values are way too large
     What units are we dealing with here ?
     The data diverges as the time samples get longer
-
 Also the solve functions generate completey different coefficients
 than the originals, and it seems to diverge when the degrees go above 8. No, 5...
-
 Also I have a huge doubt: am I confusing Acceleration with gravity potential?
-
 # =============================================================================
 # =============================================================================
 # =============================================================================
